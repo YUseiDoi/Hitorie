@@ -1,0 +1,154 @@
+<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top2_path %>
+</div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+
+<div class="under-header-section">
+<%= form_tag({controller:"shops",action:"index4"}, method: :get) do %>
+    <%= text_field_tag :search %>
+    <input type="submit" value:"Let's Go" class="button2">
+ <% end %>
+ </div>
+
+</div>
+
+<% end %>
+
+</div>
+</div>
+
+<div class="tabs-container">
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item" for="all"><%= link_to "キーワード検索", shops_search_path %>
+</label>
+<input id="programming" type="radio" name="tab_item">
+<label class="tab_item" for="programming"><%= link_to "地図から検索", shops_mapsearch_path %>
+</label>
+<input id="design" type="radio" name="tab_item">
+<label class="tab_item" for="design"><%= link_to "条件検索", shops_condition_path %>
+</label>
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item_2" for="all"><%= link_to "ランダム検索", shops_random_path %>
+</label>
+</div>
+
+
+<div class="search-boxes-container">
+
+<div class="search-center-box">
+
+<div class="search-container">
+<div class="random-search-explain">
+<h3>ルーレットで店を決めましょう</h3>
+<p>ルーレットを回すと今日のあなたの行くお店が決まります。これで優柔不断な人も店選びには苦労しません。</p>
+</div>
+<div class="needle">
+<p>▼</p>
+</div>
+<div class="random-search-container">
+<ul id="roulette">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+<div class="controller">
+<div id="button">
+  <button class="rnd" id="rollRnd" type="button"onclick="test()">ルーレットを回す</button>
+</div>
+</div>
+</div>
+
+<!--
+<div class="each-condition">
+<%= link_to '1つ取得する', shops_index3_path(num: 1) %>
+</div>
+-->
+<!--
+<div class="each-condition">
+<%= link_to '3つ取得する', shops_index3_path(num: 3) %>
+</div>
+<div class="each-condition">
+<%= link_to '5つ取得する', shops_index3_path(num: 5) %>
+</div>
+-->
+</div>
+</div>
+
+</div>
+
+<div class="random-search-under-box">
+</div>
+
+<script src="https://embed.small.chat/T01DG63L5GSG01D1DTHFTR.js" async></script>
+
+<div class="above-footer">
+</div>
+
+<script>
+(function () {
+  $('.num').on('click', function () {
+    var $this;
+    $this = $(this);
+    return $('#roulette').removeAttr('class').addClass(`number-${$this.val()}`);
+  });
+
+  $('#rollRnd').on('click', function () {
+    var num;
+    num = 1 + Math.round(Math.random() * 9);
+    return $('#roulette').removeAttr('class').addClass(`number-${num}`);
+
+  });
+
+}).call(this);
+
+</script>
+
+<script>
+$('#button').click(function(e) {
+  e.preventDefault();
+  
+  // ボタンを押して5秒後に結果ページへ遷移
+  var TransitionDelay = function(){
+      window.location.href = 'http://localhost:3000/shops/index3?num=1';
+  }
+  setTimeout ( TransitionDelay, 3000 );
+  });
+
+</script>
