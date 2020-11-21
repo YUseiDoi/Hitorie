@@ -68,6 +68,8 @@ gem 'gmaps4rails'
 
 gem 'gon'
 
+gem 'jquery-rails'
+
 group :production do
   gem 'pg'
 end
