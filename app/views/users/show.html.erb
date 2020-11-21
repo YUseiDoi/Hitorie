@@ -84,3 +84,28 @@
 <div class="above-footer3">
 </div>
 
+<script>
+var mySwiper = new Swiper ('.swiper-container', {
+  loop: true,
+  slidesPerView: 2,
+  spaceBetween: 10,
+  centeredSlides : true,
+  pagination: '.swiper-pagination',
+  nextButton: '.swiper-button-next',
+  prevButton: '.swiper-button-prev'
+})
+</script>
+
+<script>
+$(function(){
+    $("ul#menu li").hover(function(){
+        $("> ul:not(:animated)" , this).animate({
+            height : "toggle",
+            opacity : "toggle"
+        }, 500 );
+    },
+    function(){
+        $("> ul" , this).fadeOut("slow");
+    });
+});
+</script>

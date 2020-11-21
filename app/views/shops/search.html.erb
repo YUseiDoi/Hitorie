@@ -87,3 +87,16 @@
 
 <div class="above-footer2">
 </div>
+
+<script>
+$(function () {
+    $('.tooltip').hide();
+    $('td').hover(
+    function () {
+        $(this).children('.tooltip').fadeIn('fast');
+    },
+    function () {
+        $(this).children('.tooltip').fadeOut('fast');
+    });
+});
+</script>
