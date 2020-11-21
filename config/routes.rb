@@ -35,7 +35,5 @@ Rails.application.routes.draw do
 
   resources :prices
 
-  resources :users
-
   root 'shops#top'
 end
