@@ -1,0 +1,8 @@
+<h1>価格帯投稿ページ</h1>
+
+<%= form_for @price do |f| %>
+    <div class="field">
+        <p>ジャンル：<%= f.text_field :pricerange %></p>
+        <%= f.submit "投稿する" %>
+    </div>
+<% end %>

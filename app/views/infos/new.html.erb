@@ -1,0 +1,8 @@
+<h1>お知らせ投稿ページ</h1>
+
+<%= form_for @info do |f| %>
+    <div class="field">
+        <p>お知らせ：<%= f.text_area :body %></p>
+        <%= f.submit "投稿する" %>
+    </div>
+<% end %>

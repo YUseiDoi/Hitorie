@@ -1,0 +1,14 @@
+<h1>お知らせ一覧</h1>
+
+<% @infos.each do |t| %>
+    <div class="info-index">
+    <p>id：<%= t.id %>
+    -><%= t.body %>
+    <%= link_to "編集する", edit_info_path(t.id) %>
+    <%= link_to "削除する", info_path(t.id), method: :delete %>
+    </p>
+    </div>
+<% end %>
+
+<%= link_to "お知らせ投稿", new_info_path %>
+<%= link_to "トップページへ", top2_path %>

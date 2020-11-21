@@ -1,0 +1,202 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.signup-title {
+    //background-color: #e32f2f;
+    background-color: #e32f2f;
+    height: 50px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 50px;
+    margin-left: 35%;
+    margin-right: 35%;
+
+    h2 {
+        padding-top: 10px;
+    }
+}
+
+.edituser-title {
+    //background-color: #e32f2f;
+    background-color: #e32f2f;
+    height: 50px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 50px;
+    margin-left: 35%;
+    margin-right: 35%;
+
+    h2 {
+        padding-top: 10px;
+    }
+}
+
+.signin-box {
+    height: 520px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    //border-bottom: 5px solid #666;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 77px;
+    text-align: center;
+    background-color: #f2f2f2;
+
+    a {
+        color: #e32f2f;
+    }
+
+    a:hover {
+        color: #e32f2f;
+    }
+}
+
+.edituser-box {
+    width: 80%;
+    margin-left: 10%;
+    background-color: #f2f2f2;
+}
+
+.username {
+    height: 150px;
+    //border-top: 5px solid #666;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 50px;
+}
+
+.profile-container {
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.profile-image {
+    height: 100px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 150px;
+
+    p {
+        margin-left: 30%;
+    }
+
+    h2 {
+        text-align: center;
+        margin-left: 50%;
+        width: 300px;
+        font-size: 20px;
+    }
+}
+
+.user_image {
+    margin-left: 40%;
+}
+
+.signup-username {
+    height: 150px;
+    //border-top: 5px solid #666;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 50px;
+}
+
+.signup-email {
+    height: 100px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;
+}
+
+.email {
+    height: 100px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 50px;
+}
+
+.email2 {
+    height: 100px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+    margin-bottom: 50px;
+}
+
+.email3 {
+    height: 100px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 150px;
+}
+
+.password {
+    height: 100px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px;  
+    padding-top: 10px;
+}
+
+.repassword {
+    height: 100px;
+    //border-left: 5px solid #666;
+    //border-right: 5px solid #666;
+    text-align: center;
+    font-size: 20px; 
+    padding-top: 10px;
+}
+
+.button {
+    display       : inline-block;
+    border-radius : 5%;          /* 角丸       */
+    font-size     : 18pt;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 12px 12px;   /* 余白       */
+    background    : #666;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 0.2em;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid #666;    /* 枠の指定 */
+
+    button :hover {
+      box-shadow    : none;        /* カーソル時の影消去 */
+      color: #666;
+      background-color: #faf5ea;
+      border        : 2px solid #666;    /* 枠の指定 */
+    }      
+  }
+
+  .user-totop {
+      background-color: #666;
+      height: 30px;
+      margin-left: 5%;
+      margin-right: 88%;
+      margin-bottom: 20px;
+
+      a {
+          color: #ffffff;
+          font-size: 20px;
+          padding-left: 5%;
+      }
+
+      a:hover {
+        color: #ffffff; 
+      }
+  }

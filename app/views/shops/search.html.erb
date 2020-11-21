@@ -1,0 +1,91 @@
+<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<% if user_signed_in? %>
+<%= link_to "top", top2_path %>
+<% else %>
+<%= link_to "top", top_path %>
+<% end %>
+</div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+</div>
+
+<% end %>
+
+</div>
+</div>
+
+
+<div class="tabs-container">
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item_2" for="all"><%= link_to "キーワード検索", shops_search_path %>
+</label>
+<input id="programming" type="radio" name="tab_item">
+<label class="tab_item" for="programming"><%= link_to "地図から検索", shops_mapsearch_path %>
+</label>
+<input id="design" type="radio" name="tab_item">
+<label class="tab_item" for="design"><%= link_to "条件検索", shops_condition_path %>
+</label>
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item" for="all"><%= link_to "ランダム検索", shops_random_path %>
+</label>
+</div>
+
+<div class="search-shop-box1">
+ <%= form_tag({controller:"shops",action:"index"}, method: :get) do %>
+   <div class="keyword-search-container">
+   <div class="search-explain">
+   <h3>店名から探す</h3>
+   </div>
+   <div class="keyword-search-textarea">
+   <%= text_field_tag :search, nil, placeholder: "例：〇〇亭", class:"", size: "45×1" %>
+   </div>
+   </div>
+   <div class="keyword-search-container">
+   <div class="search-explain2">
+      <h3>場所から探す</h3>
+   </div>
+   <div class="keyword-search-textarea">
+   <%= text_area_tag :search2, nil, placeholder: "例：東京都渋谷区", class:"", size: "45x3" %>
+   </div>
+   <div class="search-button">
+   <input type="submit" value"検索する" class="button">
+   </div>
+   </div>
+<% end %>
+</div>
+
+<div class="above-footer2">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>

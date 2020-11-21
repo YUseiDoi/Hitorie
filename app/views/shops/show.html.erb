@@ -1,0 +1,148 @@
+<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container"  data-animsition-in-class="fade-in">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "40px", height: "40px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<ul id="menu">
+    <li><a href="">search</a>
+        <ul class="child_menu">
+            <li><%= link_to "キーワード検索する", shops_search_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "地図から検索する", shops_mapsearch_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "条件検索する", shops_condition_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "優柔不断なあなたに", shops_random_path, class: 'btn btn-default' %></li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="under-header-section">
+<% if user_signed_in? %>
+<%= link_to "top", top2_path %>
+<% else %>
+<%= link_to "top", top_path %>
+<% end %>
+ </div>
+ </div>
+</div>
+
+<div class="shop-show-container">
+<div class="shop-show-img-box">
+<%= image_tag @shop.image_url, size: "100%×100%" if @shop.image? %>
+</div>
+<div class="show-shop">
+    <div class="shop-name">
+    <h2><%= @shop.name %></h2>
+    </div>
+    <p>住所：<%= @shop.address %></p>
+    <p>電話番号：<%= @shop.phone %></p>
+    <p>１人での行きやすさ：<%= @shop.rank %></p>
+    <p>雰囲気：<%= @shop.atmos %></p>
+    <p>ジャンル：<%= @genres[(@shop.genre_id - 3)]['name'] %></p>
+    <p>価格帯：<%= @prices[@shop.price_id]['pricerange'] %></p>
+    <div class="shop-intro-box">
+    <div class="grad-wrap">
+    <span class="grad-trigger"></span>
+    <div class="grad-item">
+        <p>店の紹介：<%= @shop.intro %></p>
+    </div>
+    </div>
+    </div>
+  
+    <% if user_signed_in? %>
+    <p>いいね件数: <%= @shop.likes.count %></p>
+      <% if current_user.already_liked?(@shop) %>
+　 　   <%=link_to shop_like_path(@shop), method: :delete do%>
+      <p>いいねを取り消す</p>
+　　　<%end%>
+      <% else %>
+        <%=link_to shop_likes_path(@shop), method: :post do%>
+      <p>いいね</p>
+　　 <%end%>
+  <% end %>
+  <% end %>
+
+  <% if user_signed_in? && current_user.id == 3 %> 
+    <%= link_to "編集する", edit_shop_path(@shop.id) %>
+    <%= link_to "削除する", shop_path(@shop.id), method: :delete %>
+  <% end %>
+</div>
+</div>
+
+</div>
+
+<!--
+<h2>いいねしたユーザー</h2>
+<% @shop.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+-->
+
+<div class="show-map-box">
+<div class="show-map-explain">
+<p>店の位置を確認する</p>
+</div>
+<div id="map"></div>
+
+<style type="text/css">
+  #map { height: 600px;
+         width: 85%;
+         margin-left: 7.5%;
+         margin-right: 7.5%;
+        }
+</style>
+<script>
+function initMap(latlng) {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: latlng,
+    zoom: 16
+  });
+
+  var marker = new google.maps.Marker({
+    position: latlng,
+    map: map
+  });
+}
+
+function getLatLng() {
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({
+    address: "<%= @shop.address %>"
+  }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      for (var i in results) {
+        if (results[i].geometry) {
+          var latlng = results[i].geometry.location;
+          initMap(latlng)
+        }
+      }
+    }
+  });
+}
+</script>
+</div>
+
+async defer></script>
+<br>
+
+<div class="above-footer">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>

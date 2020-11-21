@@ -1,0 +1,9 @@
+<h1>ジャンル編集ページ</h1>
+
+<%= form_for @genre do |f| %>
+    <div class="field">
+        <p>ジャンル：<%= f.text_field :name %></p>
+        <p>ナンバー：<%= f.number_field :num %></p>
+        <%= f.submit "編集する" %>
+    </div>
+<% end %>

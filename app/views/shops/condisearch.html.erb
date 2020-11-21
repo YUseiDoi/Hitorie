@@ -1,0 +1,216 @@
+<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top2_path %>
+
+</div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+</div>
+
+<% end %>
+
+</div>
+</div>
+
+<div class="tabs-container">
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item" for="all"><%= link_to "キーワード検索", shops_search_path %>
+</label>
+<input id="programming" type="radio" name="tab_item">
+<label class="tab_item" for="programming"><%= link_to "地図から検索", shops_mapsearch_path %>
+</label>
+<input id="design" type="radio" name="tab_item">
+<label class="tab_item_2" for="design"><%= link_to "条件検索", shops_condition_path %>
+</label>
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item" for="all"><%= link_to "ランダム検索", shops_random_path %>
+</label>
+</div>
+
+<div class="animation">
+
+<div class="search-boxes-container">
+
+<div class="search-center-box3">
+
+<div class="condition-search-container">
+
+<div class="anm_mod left delay">
+
+<div class="search-explain-condition">
+<h3>ジャンルから探す</h3>
+</div>
+
+<div class="anm_mod left delay">
+
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("china1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 1) %>
+        <p>中華料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("japan1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 2) %>
+        <p>和食・日本料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("italian1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 3) %>
+        <p>イタリアン</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("france1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 4) %>
+        <p>フランス料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("asia1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 5) %>
+        <p>アジア料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("america1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 6) %>
+        <p>アメリカ料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("cafe1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 7) %>
+        <p>カフェ・スイーツ</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("fish1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 8) %>
+        <p>魚介料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("nabe1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 9) %>
+        <p>鍋料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("okonomiyaki1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 10) %>
+        <p>お好み焼き・もんじゃ</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("ramen1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 11) %>
+        <p>麺料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("niku1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 12) %>
+        <p>肉料理</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("izakaya1.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(genre_id: 13) %>
+        <p>居酒屋・バー</p>    
+        </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    </div>
+
+</div>
+
+
+<div class="condition-search-container">
+
+<div class="anm_mod right delay">
+
+<div class="search-explain-condition">
+<h3>価格帯から探す</h3>
+</div>
+
+<div class="anm_mod right delay">
+
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("1000.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(price_id: 1) %>
+        <p>～1000円</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("2000.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(price_id: 2) %>
+        <p>～2000円</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("3000.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(price_id: 3) %>
+        <p>～3000円</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("4000.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(price_id: 4) %>
+        <p>～4000円</p>    
+        </div>
+        <div class="swiper-slide">
+        <%# app/assets/images %>
+        <%= link_to image_tag("5000.jpg", { alt: "Rails icon", id: "assets", class: "image", width: "600px" }), shops_index2_path(price_id: 5) %>
+        <p>4001円～</p>    
+        </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    </div>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="above-footer">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>
+

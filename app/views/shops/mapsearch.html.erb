@@ -1,0 +1,147 @@
+<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top2_path %>
+</div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+</div>
+
+<% end %>
+
+</div>
+</div>
+
+<div class="tabs-container">
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item" for="all"><%= link_to "キーワード検索", shops_search_path %>
+</label>
+<input id="programming" type="radio" name="tab_item">
+<label class="tab_item_2" for="programming"><%= link_to "地図から検索", shops_mapsearch_path %>
+</label>
+<input id="design" type="radio" name="tab_item">
+<label class="tab_item" for="design"><%= link_to "条件検索", shops_condition_path %>
+</label>
+<input id="all" type="radio" name="tab_item" checked>
+<label class="tab_item" for="all"><%= link_to "ランダム検索", shops_random_path %>
+</label>
+</div>
+
+
+<div class="search-boxes-container2">
+
+<div class="search-left-box2">
+</div>
+
+<div class="search-center-box2">
+
+<div id='map'></div>
+
+<style>
+#map{
+    height: 600px;
+    width: 1200px;
+    margin-top: 20px;
+    margin-left: 5%;
+
+    a {
+        color: #FB7D79;
+        text-decoration: none;
+      }  
+}
+</style>
+
+
+<script src="https://embed.small.chat/T01DG63L5GSG01D1DTHFTR.js" async></script>
+
+
+<script>
+
+let map
+let geocoder
+let marker = []; 
+let infoWindow = []; 
+const shops = gon.shops; 
+
+
+function initMap(){
+    geocoder = new google.maps.Geocoder()
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.6809591, lng: 139.7673068},
+    zoom: 13
+    });
+    for (let i = 0; i < shops.length; i++) {
+        geocoder.geocode( { 'address': shops[i].address }, function(results, status) {
+        if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            marker[i] = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+            let id = shops[i]['id']
+            infoWindow[i] = new google.maps.InfoWindow({
+            content: `<a href='/shops/${id}'>${shops[i].name}</a>`
+            });
+            marker[i].addListener("click", function(){
+                infoWindow[i].open(map, marker[i]);
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+        });
+    }
+
+
+
+}
+function codeAddress(){
+    // 入力を取得
+    let inputAddress = document.getElementById('address').value;
+    // geocodingしたあとmapを移動
+}
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Hjy8PYIQ010xXxQer6gvZb52Vm0_xWw&callback=initMap" async defer></script>
+</div>
+
+<div class="search-right-box2">
+</div>
+
+</div>
+
+
+
+<div class="above-footer">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>

@@ -1,0 +1,133 @@
+shop index<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top2_path %>
+</div>
+<div class="under-header-section">
+<ul id="menu">
+    <li><a href="">search</a>
+        <ul class="child_menu">
+            <li><%= link_to "キーワード検索する", shops_search_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "地図から検索する", shops_mapsearch_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "条件検索する", shops_condition_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "優柔不断なあなたに", shops_random_path, class: 'btn btn-default' %></li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="under-header-section">
+<%= form_tag({controller:"shops",action:"index4"}, method: :get, class: "btn") do %>
+    <%= text_field_tag :search %>
+    <input type="submit" value"Let's Go" class="button2">
+    <% end %>
+ </div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+</div>
+<div class="under-header-section">
+<ul id="menu">
+    <li><a href="">search</a>
+        <ul class="child_menu">
+            <li><%= link_to "キーワード検索する", shops_search_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "地図から検索する", shops_mapsearch_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "条件検索する", shops_condition_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "優柔不断なあなたに", shops_random_path, class: 'btn btn-default' %></li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="under-header-section">
+<%= form_tag({controller:"shops",action:"index4"}, method: :get, class: "btn") do %>
+    <%= text_field_tag :search %>
+    <input type="submit" value"Let's Go" class="button2">
+    <% end %>
+ </div>
+
+<% end %>
+
+</div>
+</div>
+
+<div class="above-shop-container">
+<h3>検索結果</h3>
+</div>
+
+<div class="shop-container">
+    <% @shops.each do |t| %>
+        <div class="shop">
+        <div class="img-box">
+        <%= image_tag t.image_url, size: "100%×100%" if t.image? %>
+        </div>
+
+        <div class="shop-explain-box">
+            <div class="top3-shop-explain">
+            <h3><%= t.name %><br>
+            <p>ジャンル：<%= @genres[(t.genre_id - 1)]['name'] %>　<%= @prices[(t.price_id - 1)]['pricerange'] %>
+            </h3>
+            </p>
+            </div>
+        
+            <% if user_signed_in? %>
+            <% if current_user.already_liked?(t) %>
+　 　　         <%=link_to shop_like_path(id: t.id, shop_id: t.id), method: :delete do%>
+    　      <div class="LikesIcon">
+                <i class="far fa-heart LikesIcon-fa-heart"></i>
+                <%=t.likes.count%>
+                <div class="top3-shop-method">
+                <% if current_user.id == 3 %>  
+                    <%= link_to "削除する", shop_path(t.id), method: :delete %>
+                <% end %>
+                <%= link_to "詳しく見る", shop_path(t.id) %>
+                </div>    
+            </div>
+　　　      <%end%>
+            <% else %>
+                <%=link_to shop_likes_path(id: t.id, shop_id: t.id), method: :post do%>
+            <div class="LikesIcon">
+                <i class="far fa-heart LikesIcon-fa-heart"></i>
+                <%=t.likes.count%>
+                <div class="top3-shop-method">
+                <%= link_to "詳しく見る", shop_path(t.id) %>
+                </div>    
+            </div>
+　　        <%end%>
+            <% end %>
+            <% end %>
+        </div>
+        </div>
+    <% end %>
+</div>
+
+<div class="above-footer">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>

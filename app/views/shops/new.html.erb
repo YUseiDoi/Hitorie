@@ -1,0 +1,36 @@
+<h1>投稿ページ</h1>
+
+<%= form_for @shop do |f| %>
+    <div class="field">
+        <p>店名：<%= f.text_field :name %></p>
+        <p>電話番号：<%= f.text_field :phone %></p>
+        <p>住所：<%= f.text_field :address %></p>
+        <p>店の紹介文：<%= f.text_area :intro, :size => "50x10" %></p>
+        <p>雰囲気：<%= f.text_field :atmos %></p>
+        <p>１人で行きやすい度：<%= f.number_field :rank, min: 1, max: 5 %></p>
+        <p>店の画像：<%= f.label :image %>
+        <%= f.file_field :image %></p>
+        <p>ジャンルID：<%= f.number_field :genre_id %></p>
+        <p>価格帯id：<%= f.number_field :price_id %></p>
+        <%= f.submit "投稿する" %>
+    </div>
+<% end %>
+
+<% @genres.each do |t| %>
+    <div class="genre">
+    <p><%= t.id %>：<%= t.name %></p>
+    </div>
+<% end %>
+
+<% @prices.each do |t| %>
+    <div class="price">
+    <p><%= t.id %>：<%= t.pricerange %></p>
+    </div>
+<% end %>
+
+<%= link_to "top", top2_path %>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>
+

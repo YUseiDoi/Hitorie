@@ -1,0 +1,131 @@
+<%= stylesheet_link_tag 'shops', :media => "all" %>
+
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top2_path %>
+</div>
+<div class="under-header-section">
+<ul id="menu">
+    <li><a href="">search</a>
+        <ul class="child_menu">
+            <li><%= link_to "キーワード検索する", shops_search_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "地図から検索する", shops_mapsearch_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "条件検索する", shops_condition_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "優柔不断なあなたに", shops_random_path, class: 'btn btn-default' %></li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="under-header-section">
+<%= form_tag({controller:"shops",action:"index4"}, method: :get, class: "btn") do %>
+    <%= text_field_tag :search %>
+    <input type="submit" value"Let's Go" class="button2">
+    <% end %>
+ </div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+</div>
+<div class="under-header-section">
+<ul id="menu">
+    <li><a href="">search</a>
+        <ul class="child_menu">
+            <li><%= link_to "キーワード検索する", shops_search_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "地図から検索する", shops_mapsearch_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "条件検索する", shops_condition_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "優柔不断なあなたに", shops_random_path, class: 'btn btn-default' %></li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="under-header-section">
+<%= form_tag({controller:"shops",action:"index4"}, method: :get, class: "btn") do %>
+    <%= text_field_tag :search %>
+    <input type="submit" value"Let's Go" class="button2">
+    <% end %>
+ </div>
+
+<% end %>
+
+</div>
+</div>
+
+<div class="about-title-box">
+<h2>ヒトリエとはどういうサイト？</h2>
+</div>
+
+<div class="about-explain">
+<p>１人で外食することができない...誰かと一緒でないとお店に入れない...</p>
+<p>そんな人が1人は周りにいるのではないでしょうか？</p>
+<p>もしかしたらこのサイトを見てるということはあなたもそんなタイプの１人という可能性もあるかもしれません。</p>
+<p>このサイトの作成者も何を隠そう「そういうタイプ」の人間なのです。</p>
+<p>しかし、もう心配ありません！！</p>
+<p>ヒトリエには１人でも「行きやすい」、「入りやすい」、「居心地がいい」お店しか載っていません。</p>
+<p>あなたもヒトリエを利用して、快適な１人ごはんを楽しみましょう。</p>
+</div>
+
+<div class="about-title-box">
+<h2>利用方法</h2>
+</div>
+
+<div class="about-explain">
+<h2>検索方法</h2>
+<p>このサイトはあなたにぴったりのお店を探すための4つの検索方法があります。</p>
+<h3>1つ目はキーワード検索</h3>
+<p>店名・場所からあなたに最適なお店を紹介します。</p>
+<h3>2つ目は地図検索</h3>
+<p>地図を使ってより視覚的にお店を選びましょう。地図から探せるので、海沿いのお店や夜景のきれいなお店を検索しやすくなります。</p>
+<h3>3つ目は条件検索</h3>
+<p>ジャンル・価格帯からあなたにあったお店を選びましょう。</p>
+<h3>4つ目は、優柔不断なあなたにピッタリなルーレット検索</h3>
+<p>お店が多すぎて決められない！（このサイトには素晴らしいお店しか載っていないので無理もありませんが）と言う人は</p>
+<p>ぜひその日のお店をルーレットに委ねましょう。きっと迷いやすいあなたも納得してくれることでしょう。</p>
+<h2>ユーザー登録</h2>
+<p>このサイトに新規登録・ログインすると、過去にあなたが「いいね」したお店が一覧になって表示されます。</p>
+<p>ぜひ新規登録・ログインして快適にサイトを利用しましょう。</p>
+</div>
+
+<script src="https://embed.small.chat/T01DG63L5GSG01D1DTHFTR.js" async></script>
+
+<div class="above-footer2">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>
+
+<script>
+$(function(){
+    $("ul#menu li").hover(function(){
+        $("> ul:not(:animated)" , this).animate({
+            height : "toggle",
+            opacity : "toggle"
+        }, 500 );
+    },
+    function(){
+        $("> ul" , this).fadeOut("slow");
+    });
+});
+</script>

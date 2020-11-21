@@ -1,0 +1,14 @@
+<h1>価格帯一覧</h1>
+
+<% @prices.each do |t| %>
+    <div class="price">
+    <p>id：<%= t.id %>
+    -><%= t.pricerange %>
+    <%= link_to "編集する", edit_price_path(t.id) %>
+    <%= link_to "削除する", price_path(t.id), method: :delete %>
+    </p>
+    </div>
+<% end %>
+
+<%= link_to "価格帯投稿", new_price_path %>
+<%= link_to "トップページへ", top2_path %>

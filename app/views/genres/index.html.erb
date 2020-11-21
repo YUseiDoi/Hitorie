@@ -1,0 +1,14 @@
+<h1>ジャンル一覧</h1>
+
+<% @genres.each do |t| %>
+    <div class="genre">
+    <p>id：<%= t.id %>
+    -><%= t.name %>, num-><%= t.num %>
+    <%= link_to "編集する", edit_genre_path(t.id) %>
+    <%= link_to "削除する", genre_path(t.id), method: :delete %>
+    </p>
+    </div>
+<% end %>
+
+<%= link_to "ジャンル投稿", new_genre_path %>
+<%= link_to "トップページへ", top2_path %>

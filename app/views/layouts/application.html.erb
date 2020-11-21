@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yuseone</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <header>
+  <p><% if user_signed_in? %>
+  <%= link_to "１人ごはんを楽しもう", top2_path %>
+  <% else %>
+  <%= link_to "1人ごはんを楽しもう", top_path %>
+  <% end %>
+  </p>
+  </header>
+  <body>
+    <%= yield %>
+  </body>
+  <footer>
+  <p>Copyright © YuseiDoi All Rights Reserved.</p>
+  </footer>
+</html>
