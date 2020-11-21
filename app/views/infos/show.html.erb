@@ -1,0 +1,134 @@
+<div class="under-header-container">
+<div class="under-header3">
+<%# app/assets/images %>
+<%= image_tag "icon.png", { alt: "Rails icon", id: "assets", class: "image", width: "35px", height: "35px" } %>
+</div>
+<div class="under-header">
+<p>ヒトリエ</p>
+</div>
+<div class="under-header2">
+<div class="under-header-section">
+<%= link_to "about", shops_about_path %>
+</div>
+
+<% if user_signed_in? %>
+
+<div class="under-header-section">
+<%= link_to "mypage", user_path(current_user.id) %>
+</div>
+<div class="under-header-section">
+<%= link_to 'log out', destroy_user_session_path, method: :delete %>
+</div>
+<div class="under-header-section">
+<ul id="menu">
+    <li><a href="">search</a>
+        <ul class="child_menu">
+            <li><%= link_to "キーワード検索する", shops_search_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "地図から検索する", shops_mapsearch_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "条件検索する", shops_condition_path, class: 'btn btn-default' %></li>
+            <li><%= link_to "優柔不断なあなたに", shops_random_path, class: 'btn btn-default' %></li>
+        </ul>
+    </li>
+</ul>
+</div>
+
+<div class="under-header-section">
+<% if user_signed_in? %>
+<%= link_to "top", top2_path %>
+<% else %>
+<%= link_to "top", top_path %>
+<% end %>
+</div>
+
+<% else %>
+
+<div class="under-header-section">
+<%= link_to "sign in", new_user_registration_path %>
+</div>
+<div class="under-header-section">
+<%= link_to "top", top_path %>
+</div>
+
+<% end %>
+
+</div>
+</div>
+
+<div class="infos-container">
+
+<div class="info-explain">
+<h2>お知らせ</h2>
+</div>
+
+<div class="info-box">
+<p><%=safe_join(@info.body.split("\n"),tag(:br))%></p>
+
+<div class="sidemenu-button">
+<button id="button"><i class="fa fa-bars"></i>その他のお知らせ</button>
+</div>
+</div>
+
+</div>
+
+<nav id="slide_menu">
+<div class="sidemenu-explain">
+<h2>その他のお知らせ</h2>
+</div>
+    <ul>
+    <% @infos.each do |t| %>
+        <div class="info-cont">
+        <li>
+            <%= t.body.truncate(15, omission: '...') %>
+            <%= link_to "詳しく見る", info_path(t.id) %>
+        </li>
+        </div>
+    <% end %>
+    </ul>
+</nav>
+ 
+<script src="https://embed.small.chat/T01DG63L5GSG01D1DTHFTR.js" async></script>
+
+<div class="above-footer">
+</div>
+
+<footer>
+<p>Copyright © YuseiDoi All Rights Reserved.</p>
+</footer>
+
+<script>
+$(function(){
+    $("ul#menu li").hover(function(){
+        $("> ul:not(:animated)" , this).animate({
+            height : "toggle",
+            opacity : "toggle"
+        }, 500 );
+    },
+    function(){
+        $("> ul" , this).fadeOut("slow");
+    });
+});
+</script>
+
+<script>
+$(function(){
+var menu = $('#slide_menu'), // スライドインするメニューを指定
+    menuBtn = $('#button'), // メニューボタンを指定
+    body = $(document.body),     
+    menuWidth = menu.outerWidth();                
+     
+    // メニューボタンをクリックした時の動き
+    menuBtn.on('click', function(){
+    // body に open クラスを付与する
+    body.toggleClass('open');
+        if(body.hasClass('open')){
+            // open クラスが body についていたらメニューをスライドインする
+            body.animate({'right' : menuWidth }, 300);            
+            menu.animate({'right' : 0 }, 300);                    
+        } else {
+            // open クラスが body についていなかったらスライドアウトする
+            menu.animate({'right' : -menuWidth }, 300);
+            body.animate({'right' : 0 }, 300);            
+        }             
+    });
+});    
+</script>
